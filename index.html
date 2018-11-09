@@ -1,39 +1,116 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Angular Lottery App</title>
-  <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
-</head>
-<body ng-app="myServiceModule">
-  <div ng-controller="GameController">
-    <h1> {{title}} </h1>
-    <hr>
-    <h2>Num List</h2>
-    <ul>
-      <li ng-repeat="n in numList">{{n}}</li>
-    </ul>
-    <h2> Generate Number </h2>
-    <button ng-click="generateRandom()">Generate Random Number</button>
-  </div>
-  <script>
-    var myApp = angular.module('myServiceModule', []);
-    myApp.controller('GameController', ['$scope', 'random', '$log', function($scope, random, $log) {
-      $scope.title = "Let's play a game";
-      $scope.numList = []
 
-      $scope.generateRandom = function(){
-        $scope.numList.push(random);
-        $log.log(random.generate());
-      };
+<head>
+    <meta charset="UTF-8">
+    <title>Lottery Raffle App</title>
+    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:700" rel="stylesheet">
+    <style>
+    html {
+        overflow-x: scroll;
+        font-family: 'Cinzel', serif;
+    }
+
+    ul#lottList {
+        padding: 20px 0px;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 486px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .lottoNum {
+        display: inline-block;
+        margin-right: 13px;
+        text-decoration: none;
+        background-color: lightcoral;
+        border-radius: 15px;
+        padding: 6px;
+        width: 56px;
+
+    }
+
+    h1,
+    h2 {
+        text-align: center;
+    }
+
+    h1 {
+        border-bottom: blueviolet;
+        border-width: thick;
+        border-style: dotted;
+    }
+
+    button {
+        margin: 15px auto;
+        display: inherit;
+        background-color: lightgray;
+        border-radius: 11px;
+        width: 220px;
+        height: 53px;
+        font-size: medium;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    #numContainer {
+        height: 80px;
+    }
+
+    #scroll {
+        display: inherit;
+        text-align: center;
+        font-size: 0.8em;
+        color: rgba(235, 229, 229, .9);
+        margin-top: -3px;
+    }
+
+    @media only screen and (max-width: 501px) {
+
+        ul#lottList {
+            width: 312px;
+        }
+    }
+    </style>
+</head>
+
+<body ng-app="myServiceModule">
+    <div ng-controller="GameController">
+        <h1> {{title}} </h1>
+        <hr>
+        <h2>Your Lottery Numbers Are:</h2>
+        <div id="numContainer">
+            <ul id="lottList">
+                <li class="lottoNum" ng-repeat="n in numList track by $index"> {{n}} </li>
+            </ul>
+            <sub ng-if="numList.length > 4" id="scroll"> &lt;- scroll -&gt; </sub>
+        </div>
+        <button ng-click="generateRandom()">Generate Random Number</button>
+    </div>
+    <script>
+    var myApp = angular.module('myServiceModule', []);
+
+    myApp.controller('GameController', ['$scope', 'random', '$log', function($scope, random, $log) {
+        $scope.title = "Let's play a game";
+        $scope.numList = []
+
+        $scope.generateRandom = function() {
+            $scope.numList.unshift(random.generate());
+
+        };
     }])
-    myApp.service('random', function(){
-      //returns random number between 1 and 100
-      var rando = Math.floor(Math.random() * 100) + 1;
-      this.generate = function(){
-        return rando;
-      }
+    
+    myApp.service('random', function() {
+
+        this.generate = function() {
+            return Math.floor(Math.random() * 900000) + 100000;
+        }
     })
-  </script>
+    </script>
 </body>
+
 </html>
