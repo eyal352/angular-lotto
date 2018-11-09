@@ -124,12 +124,12 @@
         $scope.generateRandom = function() {
             $scope.numList.unshift(random.generate());
         };
-    }])
+    }]);
     myApp.service('random', function() {
         this.generate = function() {
             return Math.floor(Math.random() * 900000) + 100000;
         }
-    })
+    });
     </script>
 </body>
 
