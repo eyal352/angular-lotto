@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular Lottery App</title>
+  <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+</head>
+<body ng-app="myServiceModule">
+  <div ng-controller="GameController">
+    <h1> {{title}} </h1>
+    <hr>
+    <h2>Num List</h2>
+    <ul>
+      <li ng-repeat="n in numList">{{n}}</li>
+    </ul>
+    <h2> Generate Number </h2>
+    <button ng-click="generateRandom()">Generate Random Number</button>
+  </div>
+  <script>
+    var myApp = angular.module('myServiceModule', []);
+    myApp.controller('GameController', ['$scope', 'random', '$log', function($scope, random, $log) {
+      $scope.title = "Let's play a game";
+      $scope.numList = []
+
+      $scope.generateRandom = function(){
+        $scope.numList.push(random);
+        $log.log(random.generate());
+      };
+    }])
+    myApp.service('random', function(){
+      //returns random number between 1 and 100
+      var rando = Math.floor(Math.random() * 100) + 1;
+      this.generate = function(){
+        return rando;
+      }
+    })
+  </script>
+</body>
+</html>
