@@ -8,9 +8,21 @@
     <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel:700" rel="stylesheet">
     <style>
-    html {
+    body {
         overflow-x: scroll;
         font-family: 'Cinzel', serif;
+        /*background-image: url('https://previews.123rf.com/images/kasezo/kasezo1711/kasezo171100019/89466884-golden-lottery-balls-stack-background-3d-illustration.jpg');*/
+        /* background-color: #1fc8db;
+       /* background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+        background-repeat: no-repeat;;*/
+        background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+        background-size: cover;
+        height: 100%;
+
+    }
+
+    html {
+        height: 100%;
     }
 
     ul#lottList {
@@ -20,6 +32,9 @@
         width: 486px;
         margin: 0 auto;
         text-align: center;
+        overflow-y: scroll;
+        /* has to be scroll, not auto */
+        -webkit-overflow-scrolling: touch;
     }
 
     .lottoNum {
@@ -45,6 +60,7 @@
     }
 
     button {
+        font-family: 'Cinzel', serif;
         margin: 15px auto;
         display: inherit;
         background-color: lightgray;
@@ -52,6 +68,7 @@
         width: 220px;
         height: 53px;
         font-size: medium;
+
     }
 
     button:focus {
@@ -66,7 +83,7 @@
         display: inherit;
         text-align: center;
         font-size: 0.8em;
-        color: rgba(235, 229, 229, .9);
+        color: thistle;
         margin-top: -3px;
     }
 
