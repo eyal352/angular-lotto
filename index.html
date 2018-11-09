@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lottery Raffle App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Cinzel:700" rel="stylesheet">
     <style>
@@ -69,21 +70,19 @@
         margin-top: -3px;
     }
 
-       @media only screen and (max-width: 501px) {
+    @media only screen and (max-width: 636px) {
 
         ul#lottList {
             width: 312px;
         }
 
-        body {
-            font-size: 52px;
+        button {
+            height: 112px;
+            width: 244px;
+            border-radius: 62px;
+            font-size: 27px;
         }
 
-        button {
-            width: 500px;
-            height: 200px;
-            font-size: 60px;
-        }
     }
     </style>
 </head>
@@ -113,7 +112,7 @@
 
         };
     }])
-    
+
     myApp.service('random', function() {
 
         this.generate = function() {
