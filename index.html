@@ -11,10 +11,6 @@
     body {
         overflow-x: scroll;
         font-family: 'Cinzel', serif;
-        /*background-image: url('https://previews.123rf.com/images/kasezo/kasezo1711/kasezo171100019/89466884-golden-lottery-balls-stack-background-3d-illustration.jpg');*/
-        /* background-color: #1fc8db;
-       /* background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-        background-repeat: no-repeat;;*/
         background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
         background-size: cover;
         height: 100%;
@@ -29,11 +25,10 @@
         padding: 20px 0px;
         overflow-x: auto;
         white-space: nowrap;
-        width: 486px;
+        width: 506px;
         margin: 0 auto;
         text-align: center;
         overflow-y: scroll;
-        /* has to be scroll, not auto */
         -webkit-overflow-scrolling: touch;
     }
 
@@ -41,10 +36,13 @@
         display: inline-block;
         margin-right: 13px;
         text-decoration: none;
-        background-color: lightcoral;
-        border-radius: 15px;
+        background-color: crimson;
+        color:gold;
+        border-radius: 35px;
         padding: 6px;
-        width: 56px;
+            width: 61px;
+    height: 58px;
+    line-height: 58px;
 
     }
 
@@ -76,26 +74,26 @@
     }
 
     #numContainer {
-        height: 80px;
+        height: 122px;
     }
 
     #scroll {
         display: inherit;
         text-align: center;
         font-size: 0.8em;
-        color: thistle;
+        color: dimgrey;
         margin-top: -3px;
     }
 
     @media only screen and (max-width: 636px) {
 
         ul#lottList {
-            width: 312px;
+            width: 332px;
         }
 
         button {
             height: 112px;
-            width: 244px;
+            width: 332px;
             border-radius: 62px;
             font-size: 27px;
         }
@@ -104,8 +102,8 @@
     </style>
 </head>
 
-<body ng-app="myServiceModule">
-    <div ng-controller="GameController">
+<body ng-app="lotteryApp">
+    <div ng-controller="gameController">
         <h1> {{title}} </h1>
         <hr>
         <h2>Your Lottery Numbers Are:</h2>
@@ -113,25 +111,20 @@
             <ul id="lottList">
                 <li class="lottoNum" ng-repeat="n in numList track by $index"> {{n}} </li>
             </ul>
-            <sub ng-if="numList.length > 4" id="scroll"> &lt;- scroll -&gt; </sub>
+            <sub ng-if="numList.length > 5" id="scroll"> &lt;- scroll -&gt; </sub>
         </div>
         <button ng-click="generateRandom()">Generate Random Number</button>
     </div>
     <script>
-    var myApp = angular.module('myServiceModule', []);
-
-    myApp.controller('GameController', ['$scope', 'random', '$log', function($scope, random, $log) {
+    var myApp = angular.module('lotteryApp', []);
+    myApp.controller('gameController', ['$scope', 'random', '$log', function($scope, random, $log) {
         $scope.title = "Let's play a game";
         $scope.numList = []
-
         $scope.generateRandom = function() {
             $scope.numList.unshift(random.generate());
-
         };
     }])
-
     myApp.service('random', function() {
-
         this.generate = function() {
             return Math.floor(Math.random() * 900000) + 100000;
         }
